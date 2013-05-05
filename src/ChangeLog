@@ -1,0 +1,177 @@
+2013-02-22  Werner Koch  <wk@gnupg.org>
+
+	Release version 2.1.0.
+	* configure.ac: Bump LT version to C4/A4/R0.
+
+	Add assuan_check_version and ASSUAN_VERSION_NUMBER.
+	* src/assuan.c (assuan_check_version): New.
+	(digitp, parse_version_number, parse_version_string)
+	(compare_versions): New.  Taken from libksba.
+	* configure.ac (VERSION_NUMBER): New ac_subst.
+	* src/Makefile.am (assuan.h): Pass VERSION and VERSION_NUMBER to
+	mkheader.
+	* src/assuan.h.in (ASSUAN_VERSION, ASSUAN_VERSION_NUMBER): New macros.
+	(assuan_check_version): New prototype.
+	* src/libassuan.def, src/libassuan.vers: Add assuan_check_version.
+	* src/mkheader.c (write_special, main): Support version and
+	version_number.
+	* tests/version.c: New.
+	* tests/Makefile.am (TESTS): Add version.
+
+	w32: Fix header inclusion order for newer toolchain.
+	* src/system-w32.c: Do not include windows.h here.
+
+	Beautify the BUILD_TIMESTAMP and put it into the binary.
+	* configure.ac (BUILD_TIMESTAMP): Use an ISO date string on all
+	platforms and ac_define it.
+	* src/sysutils.c (_assuan_sysutils_blurb): But revision and build date
+	into the binary.
+
+	w32ce: Adjust to changed API and make it build again.
+	* src/system-w32ce.c (__assuan_write, __assuan_recvmsg)
+	(__assuan_sendmsg, __assuan_waitpid): Make functions global.
+	* tests/ce-server.c: Fix syntax error (s/#else/#endif)
+
+	w32: Allow overriding a toolchain via ~/.gnupg-autogen.rc.
+	* autogen.sh (build-w32): Include {amd64,w32_toolprefixes).
+
+	Modernize release version management.
+	* configure.ac: Update to modern git version checking.  Remove svn
+	support.
+	* src/versioninfo.rc.in: Update copyright years.
+
+	Fix --with-{lib,}gpg-error-prefix.
+	* m4/gpg-error.m4: Update from current gpg-error git.
+
+	Update helper scripts.
+	* compile, config.guess, config.rpath, config.sub, depcomp,
+	* install-sh, mkinstalldirs: Update to current versions from gnulib.
+
+2013-02-07  Werner Koch  <wk@gnupg.org>
+
+	Make assuan_transact more robust against inquiry errors.
+	* src/client.c (assuan_transact): Send an CAN after an error return
+	from the inquiry callback.
+
+2012-11-26  Ben Kibbey  <bjk@luxsci.net>
+
+	Check for getpeerucred().
+	* configure.ac: check for getpeerucred() which (Open)Solaris/SunOS
+	uses.
+	* src/assuan-socket-server.c (accept_connection_bottom): make use
+	of getpeerucred().
+
+2012-11-21  Ben Kibbey  <bjk@luxsci.net>
+
+	Support LOCAL_PEEREID (NetBSD) and getpeereid() (FreeBSD)
+	* configure.ac: check for LOCAL_PEEREID and getpeereid().
+	* src/assuan-socket-server.c (accept_connection_bottom): make use of
+	LOCAL_PEEREID and getpeereid().
+
+2012-11-16  Werner Koch  <wk@gnupg.org>
+
+	Improve parsing of the GIT revision number.
+	* configure.ac (mmm4_revision): Use git rev-parse.  Print version
+	information at the end of a configure run.
+
+	Fix non-portable use of chmod in autogen.sh.
+	* autogen.sh: Remove option -c from chmod.
+
+2012-06-05  W. Trevor King  <wking@tremily.us>
+
+	src/assuan-handler.c: add help strings for standard commands.
+
+2012-04-20  W. Trevor King  <wking@tremily.us>
+
+	Update example code for pipe server.
+	* doc/assuan.texi: Fix server example code to use assuan_new.
+
+	Wrap reference to END with @code.
+	* doc/assuan.texi: Wrap reference to END with @code{}.
+
+2012-04-20  Werner Koch  <wk@gnupg.org>
+
+	State new contribution rules.
+	* doc/DCO: New.
+	* doc/HACKING: Doument new rules.  Give examples for commit logs.
+
+2012-01-25  Werner Koch  <wk@gnupg.org>
+
+	Make new functions also visible on non-W32.
+	* src/system-posix.c (__assuan_read, __assuan_write, __assuan_recvmsg)
+	(__assuan_sendmsg, __assuan_waitpid): Make functions global.
+	* src/libassuan.vers: Add above functions.
+	* configure.ac: Set version to 2.1.0-git.
+
+	Require gitlog-to-changelog to be installed.
+	* Makefile.am (GITLOG_TO_CHANGELOG): New.
+	(gen-ChangeLog): Use installed version of gitlog-to-changelog.
+	* build-aux/gitlog-to-changelog: Remove from repo.
+
+2012-01-24  Marcus Brinkmann  <marcus.brinkmann@ruhr-uni-bochum.de>
+
+	Fix npth port file handle use.
+	* assuan.h.in (ASSUAN_SYSTEM_NPTH_IMPL): Use npth_unprotect and
+	npth_protect with actual assuan functions instead of npth wrappers.
+	* libassuan.def: Add __assuan_read, __assuan_write, __assuan_sendmsg,
+	__assuan_recvmsg, __assuan_waitpid exports.
+	* system-w32.c (__assuan_read, __assuan_write, __assuan_sendmsg,
+	__assuan_recvmsg, __assuan_waitpid): Make non-static.
+
+2012-01-03  Marcus Brinkmann  <marcus.brinkmann@ruhr-uni-bochum.de>
+
+	Make assuan portable to NPTH.
+
+2011-12-20  Werner Koch  <wk@gnupg.org>
+
+	Post release version number update.
+
+	Release version 2.0.3.
+	* configure.ac: Bump LT version to C3/A3/R0.
+
+	Update gitlog-to-changelog to support --tear-off.
+
+2011-12-13  Werner Koch  <wk@gnupg.org>
+
+	Fix assuan_get_pid for pipe servers.
+	At some point in the past we introduced a regression in that the
+	client of a pipe server received its own pid and not the pid of
+	the server.
+
+	* src/assuan-pipe-connect.c (struct at_pipe_fork)
+	(struct at_socketpair_fork): Add PARENT_PID.
+	(at_pipe_fork_cb, at_socketpair_fork): Use PARENT_PID instead of getpid.
+	(pipe_connect, socketpair_connect): Set PARENT_PID.
+
+	vasprintf.c: Improve test code.
+	* src/vasprintf.c (checkit): Set flag for a test failure.
+	(main): Return error on any failure.
+
+2011-12-01  Werner Koch  <wk@gnupg.org>
+
+	Generate the ChangeLog from commit logs.
+	* build-aux/gitlog-to-changelog: New script.  Taken from gnulib.
+	* build-aux/git-log-fix: New file.
+	* build-aux/git-log-footer: New file.
+	* doc/HACKING: New file.
+	* ChangeLog: New file.
+	* Makefile.am (EXTRA_DIST): Add new files.
+	(gen-ChangeLog): New.
+	(dist-hook): Run gen-ChangeLog.
+	* autogen.sh: Install commit-msg hook for git.
+
+	Rename all ChangeLog files to ChangeLog-2011.
+
+2011-12-01  Werner Koch  <wk@gnupg.org>
+
+	NB: Changes done before December 1st, 2011 are described in
+	per directory files named ChangeLog-2011.  See doc/HACKING for
+	details.
+
+        -----
+	Copyright (C) 2011 Free Software Foundation, Inc.
+
+	Copying and distribution of this file and/or the original GIT
+	commit log messages, with or without modification, are
+	permitted provided the copyright notice and this notice are
+	preserved.
