@@ -1,5 +1,4 @@
-This is /home/wk/w/libassuan/doc/assuan.info, produced by makeinfo
-version 4.13 from /home/wk/w/libassuan/doc/assuan.texi.
+This is assuan.info, produced by makeinfo version 4.13 from assuan.texi.
 
 INFO-DIR-SECTION GNU Libraries
 START-INFO-DIR-ENTRY
@@ -1777,8 +1776,8 @@ extra functions to check the permissions.
 
 File: assuan.info,  Node: Library Copying,  Next: Copying,  Prev: Socket wrappers,  Up: Top
 
-Appendix A GNU LESSER GENERAL PUBLIC LICENSE
-********************************************
+Anhang A GNU LESSER GENERAL PUBLIC LICENSE
+******************************************
 
                       Version 2.1, February 1999
 
@@ -3128,38 +3127,38 @@ Index
 
 
 Tag Table:
-Node: Top941
-Node: Introduction2007
-Node: Assuan4073
-Node: Implementation5151
-Node: Server responses6309
-Node: Client requests8235
-Node: Error codes11250
-Node: Preparation11589
-Node: Header12167
-Node: Building sources12955
-Node: Automake14864
-Node: Multi Threading16012
-Node: Generalities16974
-Node: Data Types17378
-Node: Initializing the library18481
-Ref: function assuan_set_gpg_err_source20981
-Node: Default Log Handler23295
-Node: Contexts25061
-Ref: function assuan_new25641
-Node: Reading and Writing35838
-Node: Client code39289
-Ref: function assuan_sendfd44268
-Ref: function assuan_receivefd44800
-Node: Server code45173
-Node: External I/O Loop57261
-Node: External I/O Loop Client59079
-Node: External I/O Loop Server62169
-Node: Utilities66753
-Ref: Utilities-Footnote-174823
-Node: Socket wrappers74887
-Node: Library Copying77540
-Node: Copying105710
-Node: Index143334
+Node: Top891
+Node: Introduction1957
+Node: Assuan4023
+Node: Implementation5101
+Node: Server responses6259
+Node: Client requests8185
+Node: Error codes11200
+Node: Preparation11539
+Node: Header12117
+Node: Building sources12905
+Node: Automake14814
+Node: Multi Threading15962
+Node: Generalities16924
+Node: Data Types17328
+Node: Initializing the library18431
+Ref: function assuan_set_gpg_err_source20931
+Node: Default Log Handler23245
+Node: Contexts25011
+Ref: function assuan_new25591
+Node: Reading and Writing35788
+Node: Client code39239
+Ref: function assuan_sendfd44218
+Ref: function assuan_receivefd44750
+Node: Server code45123
+Node: External I/O Loop57211
+Node: External I/O Loop Client59029
+Node: External I/O Loop Server62119
+Node: Utilities66703
+Ref: Utilities-Footnote-174773
+Node: Socket wrappers74837
+Node: Library Copying77490
+Node: Copying105656
+Node: Index143280
 
 End Tag Table

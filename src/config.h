@@ -13,7 +13,7 @@
 #define BUILD_REVISION "7d227ac"
 
 /* The time this package was configured for a build */
-#define BUILD_TIMESTAMP "2013-05-05T15:55+0000"
+#define BUILD_TIMESTAMP "2013-05-10T14:41+0000"
 
 /* Define to 1 if you have the declaration of `sys_siglist', and to 0 if you
    don't. */
